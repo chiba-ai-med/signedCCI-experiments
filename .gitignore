@@ -1,0 +1,13 @@
+# Large / downloaded data (real-data experiments)
+data/
+*.txt.gz
+*.tar.gz
+
+# R session / build artifacts
+.Rhistory
+.RData
+.Rproj.user/
+*.Rout
+
+# OS / editor cruft
+.DS_Store
