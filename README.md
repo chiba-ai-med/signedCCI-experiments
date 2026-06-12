@@ -94,6 +94,25 @@ holds mechanically but cell-type separation in net PageRank is weak
 (net ≈ 0.008–0.017). Sharper specificity would need LR-specificity weighting,
 edge thresholding, or per-edge dominant-LR selection — left as future work.
 
+### Contributing LR detection
+
+```bash
+/home/koki/anaconda3/envs/signedcci/bin/Rscript experiments/real/lr_contribution.R
+```
+
+`BuildSignedCCI`'s `edge_table` keeps the per-LR score `X_ijk = L_ik·R_jk`, so each
+signed edge can be decomposed back into its LR contributions and ranked
+(`results/real/lr_contribution_by_edge.csv`, `dominant_lr_per_edge.csv`,
+`lr_global_importance.csv`). Examples:
+
+- `CD8 ─(-)→ Tumor` cytotoxicity is driven by **FASLG/FAS** (40%) and LGALS9 (30%);
+- `Treg ─(-)→ CD8` suppression by **IL10** (41%), LGALS9/TIM3 (38%), PD-L1/PD-1 (12%);
+- globally, `CCL5/CCR5` carries the most positive weight and
+  `LGALS9/HAVCR2 (TIM3)`, `IL10/IL10RA` the most negative.
+
+This delivers both halves of the goal: detecting signed CCI **and** the LR pairs
+responsible for each signed interaction.
+
 ## Future extensions
 
 - LR-specificity weighting / thresholding for sharper real-data signals.
