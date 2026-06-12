@@ -68,9 +68,34 @@ table. All gate assertions pass:
 
 This confirms `(-)×(-)=(+)` indirect propagation on a known network.
 
-## Next
+## Real data (GSE72056, Tirosh melanoma TME)
 
-Real data (e.g. GSE72056, Tirosh melanoma TME): assign cell types
-(`Tumor/Treg/CD8/NK/...`), aggregate per-cell-type expression, run
-`build_lr_matrices(expr, lr_table)` → `signed_cci()`, and check whether
-`Treg→CD8→Tumor`-type indirect positive paths appear in real data.
+```bash
+/home/koki/anaconda3/envs/signedcci/bin/Rscript experiments/real/01_download.R
+/home/koki/anaconda3/envs/signedcci/bin/Rscript experiments/real/run_real.R
+```
+
+`experiments/real/run_real.R` reads the 23,684 gene × 4,645 cell matrix, assigns
+cell types from the GEO annotation (malignant → `Tumor`; non-malignant codes →
+`Bcell/Macrophage/Endo/CAF/NK`; T cells split into `CD8`/`Treg`/`CD4conv` by
+`CD8A/CD8B` and `FOXP3`), aggregates per-cell-type mean log-expression, then runs
+`build_lr_matrices(expr, lr_table)` → `signed_cci()` over 12 signed LR pairs
+(checkpoints/death `(-)`: TGFB1, IL10, PD-L1/PD-1, FASLG, LGALS9, PVR;
+costim/activation `(+)`: CD80/CD86, IL12, IFNG, CXCL9, CCL5).
+
+**Result:** the `(-)×(-)=(+)` motif is recovered in real data — the top
+net-positive indirect path is `Tumor ─(-)→ Treg ─(-)→ CD8` (contribution 0.019),
+and several double-negative routes terminate at `Tumor`
+(`CAF→Treg→Tumor`, `Endo→CD8→Tumor`, …). Outputs in `results/real/`.
+
+**Caveat:** mean-expression aggregation yields a near-fully-connected signed
+graph (each hop is realised by many LR pairs at once), so signed propagation
+holds mechanically but cell-type separation in net PageRank is weak
+(net ≈ 0.008–0.017). Sharper specificity would need LR-specificity weighting,
+edge thresholding, or per-edge dominant-LR selection — left as future work.
+
+## Future extensions
+
+- LR-specificity weighting / thresholding for sharper real-data signals.
+- End-to-end signed random walk at the LR level (Hypergraph / Tensor PageRank),
+  per the symTensor/scTensor extension spec (not in this minimal implementation).

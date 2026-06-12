@@ -1,0 +1,161 @@
+Reading data/GSE72056_melanoma_single_cell_revised_v2.txt.gz ...
+            used  (Mb) gc trigger   (Mb)  max used   (Mb)
+Ncells  10447842 558.0   19328787 1032.3  12417840  663.2
+Vcells 128348537 979.3  387522448 2956.6 401930729 3066.5
+Collapsing 2 duplicate gene symbols (max)...
+Matrix: 23684 genes x 4645 cells
+
+=== Cell-type counts ===
+celltype
+     Tumor        CD8    CD4conv      Bcell       Treg Macrophage       Endo 
+      1257       1188        692        512        160        119         62 
+       CAF         NK 
+        56         51 
+
+Keeping cell types (>= 20 cells): Tumor, CD8, CD4conv, Bcell, Treg, Macrophage, Endo, CAF, NK 
+Per-cell-type expression matrix: 23684 x 9 
+
+=== Signed LR pairs ( 12 of 12 usable) ===
+   ligand receptor sign usable
+1   TGFB1   TGFBR1   -1   TRUE
+2    IL10   IL10RA   -1   TRUE
+3   CD274    PDCD1   -1   TRUE
+4   FASLG      FAS   -1   TRUE
+5  LGALS9   HAVCR2   -1   TRUE
+6     PVR    TIGIT   -1   TRUE
+7    CD80     CD28    1   TRUE
+8    CD86     CD28    1   TRUE
+9   IL12A  IL12RB1    1   TRUE
+10   IFNG   IFNGR1    1   TRUE
+11  CXCL9    CXCR3    1   TRUE
+12   CCL5     CCR5    1   TRUE
+
+=== A_pos (sender -> receiver), rounded ===
+           Tumor   CD8 CD4conv Bcell  Treg Macrophage Endo  CAF   NK
+Tumor       0.11  4.66    2.44  0.20  4.31       3.68 0.08 0.07 0.78
+CD8         3.78 15.29    9.25  4.60 14.46      22.05 7.07 5.65 5.68
+CD4conv     1.06  9.17    5.05  1.35  8.50       9.80 1.85 1.48 2.27
+Bcell       0.32  8.30    5.27  0.53  8.33       6.46 0.34 0.29 1.38
+Treg        0.76  8.56    4.96  0.97  8.17       8.37 1.26 1.01 1.81
+Macrophage  0.34 12.18   10.54  0.95 15.39       5.55 0.20 0.29 2.96
+Endo        0.14  5.57    2.93  0.32  5.18       4.17 0.08 0.10 1.10
+CAF         0.06  4.88    2.53  0.25  4.80       3.05 0.01 0.04 1.24
+NK          1.05 13.30    7.14  1.36 12.26      12.93 1.73 1.38 2.77
+
+=== A_neg (sender -> receiver), rounded ===
+           Tumor   CD8 CD4conv Bcell  Treg Macrophage Endo  CAF    NK
+Tumor       0.18  5.60    2.91  0.98  5.34       2.72 0.11 0.11  3.25
+CD8         1.04 10.07    5.94  2.79  9.83       8.16 0.52 2.59  7.20
+CD4conv     0.70  8.67    4.80  2.61  7.62       7.61 0.45 0.83  6.44
+Bcell       0.90 10.47    5.13  3.15  7.81       9.35 0.84 0.67  8.16
+Treg        0.80 10.66    5.56  2.97  8.27       8.68 0.66 0.82  7.39
+Macrophage  1.96 21.46    9.61  5.90 13.69      17.78 2.11 1.53 16.12
+Endo        1.52 19.56    8.47  4.02 14.21      12.09 1.62 1.22 13.58
+CAF         0.51  8.88    4.51  1.36  8.56       3.82 0.21 0.37  5.26
+NK          1.51 11.79    6.82  2.99 11.72       8.93 0.76 4.06  8.60
+
+=== Signed PageRank (converged = TRUE , iter = 10 ) ===
+       cell positive negative     net   total
+       Endo  0.02848  0.01149 0.01699 0.03996
+        CAF  0.02947  0.01306 0.01641 0.04253
+      Tumor  0.02578  0.00949 0.01629 0.03526
+ Macrophage  0.10007  0.08446 0.01562 0.18453
+    CD4conv  0.07046  0.05501 0.01544 0.12547
+       Treg  0.10269  0.08805 0.01464 0.19075
+      Bcell  0.03555  0.02140 0.01415 0.05695
+        CD8  0.11133  0.09920 0.01213 0.21053
+         NK  0.06122  0.05279 0.00843 0.11402
+
+=== Top net-POSITIVE indirect paths (hop>=2) ===
+                   path_name signs hop net_sign contribution
+              CAF->Treg->CD8   -,-   2        1   0.02220188
+      Tumor->CD8->Macrophage   +,+   2        1   0.02013524
+ Macrophage->Macrophage->CD8   -,-   2        1   0.01986761
+       Endo->Macrophage->CD8   -,-   2        1   0.01953395
+         NK->CD8->Macrophage   +,+   2        1   0.01940988
+             Endo->Treg->CD8   -,-   2        1   0.01933982
+      Bcell->Macrophage->CD8   -,-   2        1   0.01863673
+            Tumor->Treg->CD8   -,-   2        1   0.01857092
+    CD4conv->CD8->Macrophage   +,+   2        1   0.01853199
+        CD8->CD8->Macrophage   +,+   2        1   0.01823409
+       CAF->Treg->Macrophage   -,-   2        1   0.01807989
+       CD8->Macrophage->Treg   +,+   2        1   0.01801781
+      Bcell->CD8->Macrophage   +,+   2        1   0.01732626
+             CAF->Treg->Treg   -,-   2        1   0.01722694
+       Treg->CD8->Macrophage   +,+   2        1   0.01698923
+                                                                                lr_annotation
+                    CAF-->Treg[LR1/LR2/LR3/LR4/LR5/LR6] | Treg-->CD8[LR1/LR2/LR3/LR4/LR5/LR6]
+       Tumor-+>CD8[LR7/LR8/LR9/LR10/LR11/LR12] | CD8-+>Macrophage[LR7/LR8/LR9/LR10/LR11/LR12]
+         Macrophage-->Macrophage[LR1/LR2/LR3/LR5/LR6] | Macrophage-->CD8[LR1/LR2/LR3/LR5/LR6]
+               Endo-->Macrophage[LR1/LR2/LR3/LR5/LR6] | Macrophage-->CD8[LR1/LR2/LR3/LR5/LR6]
+              NK-+>CD8[LR7/LR8/LR10/LR11/LR12] | CD8-+>Macrophage[LR7/LR8/LR9/LR10/LR11/LR12]
+                       Endo-->Treg[LR1/LR2/LR3/LR5/LR6] | Treg-->CD8[LR1/LR2/LR3/LR4/LR5/LR6]
+          Bcell-->Macrophage[LR1/LR2/LR3/LR4/LR5/LR6] | Macrophage-->CD8[LR1/LR2/LR3/LR5/LR6]
+                  Tumor-->Treg[LR1/LR2/LR3/LR4/LR5/LR6] | Treg-->CD8[LR1/LR2/LR3/LR4/LR5/LR6]
+     CD4conv-+>CD8[LR7/LR8/LR9/LR10/LR11/LR12] | CD8-+>Macrophage[LR7/LR8/LR9/LR10/LR11/LR12]
+         CD8-+>CD8[LR7/LR8/LR9/LR10/LR11/LR12] | CD8-+>Macrophage[LR7/LR8/LR9/LR10/LR11/LR12]
+             CAF-->Treg[LR1/LR2/LR3/LR4/LR5/LR6] | Treg-->Macrophage[LR1/LR2/LR3/LR4/LR5/LR6]
+ CD8-+>Macrophage[LR7/LR8/LR9/LR10/LR11/LR12] | Macrophage-+>Treg[LR7/LR8/LR9/LR10/LR11/LR12]
+       Bcell-+>CD8[LR7/LR8/LR9/LR10/LR11/LR12] | CD8-+>Macrophage[LR7/LR8/LR9/LR10/LR11/LR12]
+                   CAF-->Treg[LR1/LR2/LR3/LR4/LR5/LR6] | Treg-->Treg[LR1/LR2/LR3/LR4/LR5/LR6]
+            Treg-+>CD8[LR7/LR8/LR10/LR11/LR12] | CD8-+>Macrophage[LR7/LR8/LR9/LR10/LR11/LR12]
+
+=== Net-POSITIVE indirect paths ENDING at Tumor (with >=1 inhibitory hop) ===
+                     path_name signs hop contribution
+               Endo->NK->Tumor   -,-   2  0.001927214
+ Macrophage->Macrophage->Tumor   -,-   2  0.001816653
+       Endo->Macrophage->Tumor   -,-   2  0.001786144
+      Bcell->Macrophage->Tumor   -,-   2  0.001704104
+              CAF->Treg->Tumor   -,-   2  0.001657833
+         Macrophage->NK->Tumor   -,-   2  0.001582774
+              Endo->CD8->Tumor   -,-   2  0.001561796
+       Treg->Macrophage->Tumor   -,-   2  0.001505146
+             Endo->Treg->Tumor   -,-   2  0.001444121
+              Bcell->NK->Tumor   -,-   2  0.001429129
+                CAF->NK->Tumor   -,-   2  0.001422637
+            Tumor->Treg->Tumor   -,-   2  0.001386706
+               CAF->CD8->Tumor   -,-   2  0.001350215
+    CD4conv->Macrophage->Tumor   -,-   2  0.001342476
+               Treg->NK->Tumor   -,-   2  0.001231651
+                                                                           lr_annotation
+                    Endo-->NK[LR1/LR2/LR3/LR5/LR6] | NK-->Tumor[LR1/LR2/LR3/LR4/LR5/LR6]
+  Macrophage-->Macrophage[LR1/LR2/LR3/LR5/LR6] | Macrophage-->Tumor[LR1/LR2/LR3/LR5/LR6]
+        Endo-->Macrophage[LR1/LR2/LR3/LR5/LR6] | Macrophage-->Tumor[LR1/LR2/LR3/LR5/LR6]
+   Bcell-->Macrophage[LR1/LR2/LR3/LR4/LR5/LR6] | Macrophage-->Tumor[LR1/LR2/LR3/LR5/LR6]
+             CAF-->Treg[LR1/LR2/LR3/LR4/LR5/LR6] | Treg-->Tumor[LR1/LR2/LR3/LR4/LR5/LR6]
+              Macrophage-->NK[LR1/LR2/LR3/LR5/LR6] | NK-->Tumor[LR1/LR2/LR3/LR4/LR5/LR6]
+                  Endo-->CD8[LR1/LR2/LR3/LR5/LR6] | CD8-->Tumor[LR1/LR2/LR3/LR4/LR5/LR6]
+    Treg-->Macrophage[LR1/LR2/LR3/LR4/LR5/LR6] | Macrophage-->Tumor[LR1/LR2/LR3/LR5/LR6]
+                Endo-->Treg[LR1/LR2/LR3/LR5/LR6] | Treg-->Tumor[LR1/LR2/LR3/LR4/LR5/LR6]
+               Bcell-->NK[LR1/LR2/LR3/LR4/LR5/LR6] | NK-->Tumor[LR1/LR2/LR3/LR4/LR5/LR6]
+                 CAF-->NK[LR1/LR2/LR3/LR4/LR5/LR6] | NK-->Tumor[LR1/LR2/LR3/LR4/LR5/LR6]
+           Tumor-->Treg[LR1/LR2/LR3/LR4/LR5/LR6] | Treg-->Tumor[LR1/LR2/LR3/LR4/LR5/LR6]
+               CAF-->CD8[LR1/LR2/LR3/LR4/LR5/LR6] | CD8-->Tumor[LR1/LR2/LR3/LR4/LR5/LR6]
+ CD4conv-->Macrophage[LR1/LR2/LR3/LR4/LR5/LR6] | Macrophage-->Tumor[LR1/LR2/LR3/LR5/LR6]
+                Treg-->NK[LR1/LR2/LR3/LR4/LR5/LR6] | NK-->Tumor[LR1/LR2/LR3/LR4/LR5/LR6]
+
+=== Treg/CD8/Tumor net-positive paths (synthetic motif in real data) ===
+                    path_name signs hop contribution
+             Tumor->Treg->CD8   -,-   2  0.018570918
+             Tumor->CD8->Treg   +,+   2  0.013201167
+             Tumor->Treg->CD8   +,+   2  0.012018672
+             Tumor->CD8->Treg   -,-   2  0.010788640
+             CD8->Tumor->Treg   +,+   2  0.003191525
+ Tumor->Treg->CD8->Macrophage -,-,+   3  0.003011956
+             Treg->CD8->Tumor   +,+   2  0.002913794
+ Tumor->CD8->Macrophage->Treg -,+,-   3  0.002391964
+ Tumor->Treg->Macrophage->CD8 -,+,-   3  0.002258357
+ Tumor->CD8->Macrophage->Treg +,+,+   3  0.002236885
+                                                                                                                          lr_annotation
+                                                            Tumor-->Treg[LR1/LR2/LR3/LR4/LR5/LR6] | Treg-->CD8[LR1/LR2/LR3/LR4/LR5/LR6]
+                                                       Tumor-+>CD8[LR7/LR8/LR9/LR10/LR11/LR12] | CD8-+>Treg[LR7/LR8/LR9/LR10/LR11/LR12]
+                                                          Tumor-+>Treg[LR7/LR8/LR9/LR10/LR11/LR12] | Treg-+>CD8[LR7/LR8/LR10/LR11/LR12]
+                                                             Tumor-->CD8[LR1/LR2/LR3/LR4/LR5/LR6] | CD8-->Treg[LR1/LR2/LR3/LR4/LR5/LR6]
+                                                     CD8-+>Tumor[LR7/LR8/LR9/LR10/LR11/LR12] | Tumor-+>Treg[LR7/LR8/LR9/LR10/LR11/LR12]
+             Tumor-->Treg[LR1/LR2/LR3/LR4/LR5/LR6] | Treg-->CD8[LR1/LR2/LR3/LR4/LR5/LR6] | CD8-+>Macrophage[LR7/LR8/LR9/LR10/LR11/LR12]
+                                                           Treg-+>CD8[LR7/LR8/LR10/LR11/LR12] | CD8-+>Tumor[LR7/LR8/LR9/LR10/LR11/LR12]
+           Tumor-->CD8[LR1/LR2/LR3/LR4/LR5/LR6] | CD8-+>Macrophage[LR7/LR8/LR9/LR10/LR11/LR12] | Macrophage-->Treg[LR1/LR2/LR3/LR5/LR6]
+              Tumor-->Treg[LR1/LR2/LR3/LR4/LR5/LR6] | Treg-+>Macrophage[LR7/LR8/LR10/LR11/LR12] | Macrophage-->CD8[LR1/LR2/LR3/LR5/LR6]
+ Tumor-+>CD8[LR7/LR8/LR9/LR10/LR11/LR12] | CD8-+>Macrophage[LR7/LR8/LR9/LR10/LR11/LR12] | Macrophage-+>Treg[LR7/LR8/LR9/LR10/LR11/LR12]
+
+=== DONE. Results in results/real ===
