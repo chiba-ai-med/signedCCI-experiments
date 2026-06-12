@@ -1,0 +1,8 @@
+"pathway","lr_ligands","functional_sign","note"
+"TGFb","TGFB1/TGFB2/TGFB3",-1,"suppressive cytokine"
+"Trail","TNFSF10",-1,"death ligand"
+"EGFR","EGF/TGFA/HBEGF/AREG",1,"growth/proliferation"
+"VEGF","VEGFA",-1,"VEGFA/FLT1 immunosuppressive (myeloid)"
+"JAK-STAT","IFNG/IL2/IL12/IL15",1,"activating cytokines"
+"TNFa","TNF",NA,"context: NFkB-survival(+) vs apoptosis(-)"
+"NFkB","TNF/IL1B",1,"inflammatory activation"

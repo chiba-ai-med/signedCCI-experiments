@@ -153,11 +153,41 @@ Re-runs GSE72056 with the 91-pair signedLRBase (88 usable; shared cell-typing he
 as net-positive double-negative paths); the richer death/NK-inhibitory coverage makes
 NK a strong negative hub. Outputs in `results/real_signedLRBase/`.
 
+## Context-dependence of the sign (scope & limits)
+
+The functional sign of an LR pair is **not a global constant** — it is a function of
+receiver cell type, cell state, co-signals, tissue, dose and time. No static database
+can enumerate all contexts, so signedLRBase is a **prior** (default sign + `category` +
+`context_dependent` + `confidence`), not ground truth, scoped to the immune×tumor TME.
+
+Two experiments probe context-dependence on GSE72056:
+
+**1. Marker check (rule-based, does NOT generalise).**
+`experiments/real/sign_refinement_markers.R` scores each receiver's activation vs
+exhaustion/M1-vs-M2 state with hand-picked panels. In this melanoma data CD8 is
+**exhausted** (exhaustion z 1.57 > activation 1.23 — the classic Tirosh finding), so
+nominally-activating signals onto CD8 (IFNG, TNF, IL1B) read as suppressed: 10/19
+context pairs disagree with the prior. Caveat: this measures the receiver's *overall
+state*, not per-ligand causation (all CD8-receiver pairs collapse to one score) — and
+the hand panels must be re-curated for every new dataset, so it does not generalise.
+
+**2. Pre-built reference (PROGENy, generalises to arbitrary data).**
+`experiments/real/progeny_demo.R` applies PROGENy's pre-trained signed pathway model
+— no per-dataset curation — and the signed activity localises sensibly:
+TGFb (−) in CAF, EGFR (+) in Tumor, VEGF (−) & JAK-STAT/NFkB (+) in Macrophage,
+Trail (−) in B/NK. The three steps: (1) *which genes* and (2) *measure activity* are
+dataset-agnostic via the pre-built model; only (3) *activity → +/- sign* keeps a thin,
+irreducible prior (`progeny_pathway_sign_prior.csv`) — because "pathway active" ≠ "good
+for the cell" (same logic as FASLG being a molecular agonist but functionally death).
+
+**Takeaway:** signs move in real data, but a single "true" sign is ill-posed; treat the
+sign as prior + dataset-local evidence + uncertainty. For arbitrary data the
+generalisable recipe is *pre-built reference (CytoSig / DoRothEA / PROGENy) + a thin
+sign-mapping prior*. NicheNet cannot supply the sign — its ligand→target potential is
+*unsigned* (activation and inhibition contribute additively).
+
 ## Future extensions
 
-- Data-driven sign refinement from downstream targets (CytoSig / DoRothEA / PROGENy)
-  — note NicheNet's ligand-target potential is *unsigned* (activation and inhibition
-  contribute additively), so it can't supply the sign directly.
 - LR-specificity weighting / thresholding for sharper real-data signals.
 - End-to-end signed random walk at the LR level (Hypergraph / Tensor PageRank),
   per the symTensor/scTensor extension spec (not in this minimal implementation).

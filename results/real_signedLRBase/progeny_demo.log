@@ -1,0 +1,82 @@
+Running PROGENy (pre-built Human model) on per-cell-type expression ...
+
+=== PROGENy pathway activity (cell type x pathway, z-scaled) ===
+           Androgen  EGFR Estrogen Hypoxia JAK-STAT  MAPK  NFkB   p53  PI3K
+Tumor          1.68  1.90     0.60    1.52    -0.55  2.33 -0.96  1.28 -2.39
+CD8           -0.99 -0.45    -0.57   -0.57     0.51 -0.35 -0.42 -0.75  0.59
+CD4conv       -0.81 -0.77    -0.71   -0.84    -0.53 -0.58 -0.18 -0.72  0.57
+Bcell         -0.79 -1.21    -0.79   -1.26    -1.28 -1.15 -0.88 -0.82  0.74
+Treg          -0.59 -0.55    -0.66   -0.36     0.75 -0.40  0.37 -0.11  0.45
+Macrophage     0.11  0.58    -0.03    0.55     2.12 -0.29  2.31  0.00 -0.40
+Endo           0.63  0.82     0.87    0.45    -0.07  0.52  0.03  0.26 -0.21
+CAF            1.35  0.48     2.08    1.32    -0.47  0.32  0.41  1.88 -0.13
+NK            -0.59 -0.78    -0.81   -0.82    -0.48 -0.41 -0.67 -1.01  0.80
+            TGFb  TNFa Trail  VEGF   WNT
+Tumor      -0.23 -0.74 -0.64  0.39 -2.51
+CD8        -0.51 -0.45  0.66 -0.64  0.38
+CD4conv    -0.62 -0.29 -0.41 -0.40  0.17
+Bcell      -0.53 -1.25  1.37 -1.93 -0.37
+Treg       -0.49  0.31 -0.25 -0.22  0.43
+Macrophage -0.55  2.04  0.45  1.47  0.64
+Endo        1.64  0.43 -1.53  0.42  0.85
+CAF         1.86  0.74 -0.94  1.07  0.23
+NK         -0.57 -0.79  1.28 -0.17  0.17
+
+=== Mapping pre-built pathway activity -> LR functional sign (per cell type) ===
+
+[TGFb pathway]  ligands=TGFB1/TGFB2/TGFB3  prior_sign=-1  (suppressive cytokine)
+       CAF       Endo      Tumor       Treg        CD8      Bcell Macrophage 
+      1.86       1.64      -0.23      -0.49      -0.51      -0.53      -0.55 
+        NK    CD4conv 
+     -0.57      -0.62 
+
+[Trail pathway]  ligands=TNFSF10  prior_sign=-1  (death ligand)
+     Bcell         NK        CD8 Macrophage       Treg    CD4conv      Tumor 
+      1.37       1.28       0.66       0.45      -0.25      -0.41      -0.64 
+       CAF       Endo 
+     -0.94      -1.53 
+
+[EGFR pathway]  ligands=EGF/TGFA/HBEGF/AREG  prior_sign=1  (growth/proliferation)
+     Tumor       Endo Macrophage        CAF        CD8       Treg    CD4conv 
+      1.90       0.82       0.58       0.48      -0.45      -0.55      -0.77 
+        NK      Bcell 
+     -0.78      -1.21 
+
+[VEGF pathway]  ligands=VEGFA  prior_sign=-1  (VEGFA/FLT1 immunosuppressive (myeloid))
+Macrophage        CAF       Endo      Tumor         NK       Treg    CD4conv 
+      1.47       1.07       0.42       0.39      -0.17      -0.22      -0.40 
+       CD8      Bcell 
+     -0.64      -1.93 
+
+[JAK-STAT pathway]  ligands=IFNG/IL2/IL12/IL15  prior_sign=1  (activating cytokines)
+Macrophage       Treg        CD8       Endo        CAF         NK    CD4conv 
+      2.12       0.75       0.51      -0.07      -0.47      -0.48      -0.53 
+     Tumor      Bcell 
+     -0.55      -1.28 
+
+[TNFa pathway]  ligands=TNF  prior_sign=context  (context: NFkB-survival(+) vs apoptosis(-))
+Macrophage        CAF       Endo       Treg    CD4conv        CD8      Tumor 
+      2.04       0.74       0.43       0.31      -0.29      -0.45      -0.74 
+        NK      Bcell 
+     -0.79      -1.25 
+
+[NFkB pathway]  ligands=TNF/IL1B  prior_sign=1  (inflammatory activation)
+Macrophage        CAF       Treg       Endo    CD4conv        CD8         NK 
+      2.31       0.41       0.37       0.03      -0.18      -0.42      -0.67 
+     Bcell      Tumor 
+     -0.88      -0.96 
+
+=== Interpretation: top cell type per signed pathway (auto) ===
+TGFb      highest in CAF         (1.86) -> sign -1 (suppressive/death)  [suppressive cytokine]
+Trail     highest in Bcell       (1.37) -> sign -1 (suppressive/death)  [death ligand]
+EGFR      highest in Tumor       (1.90) -> sign +1 (activating)  [growth/proliferation]
+VEGF      highest in Macrophage  (1.47) -> sign -1 (suppressive/death)  [VEGFA/FLT1 immunosuppressive (myeloid)]
+JAK-STAT  highest in Macrophage  (2.12) -> sign +1 (activating)  [activating cytokines]
+TNFa      highest in Macrophage  (2.04) -> sign context  [context: NFkB-survival(+) vs apoptosis(-)]
+NFkB      highest in Macrophage  (2.31) -> sign +1 (activating)  [inflammatory activation]
+
+Written progeny_pathway_activity.csv + progeny_pathway_sign_prior.csv to results/real_signedLRBase 
+
+Note: PROGENy's model is PRE-BUILT, so steps (1)+(2) run on ANY human
+dataset unchanged -- no per-dataset marker curation. Only step (3),
+activity->sign, keeps a thin irreducible prior.
