@@ -1,7 +1,10 @@
 # Large / downloaded data (real-data experiments)
-data/
+# Use data/* (not data/) so the signedLRBase exception below can re-include it.
+data/*
 *.txt.gz
 *.tar.gz
+# ...but keep the generated signedLRBase resource (small, a deliverable)
+!data/signedLRBase/
 
 # R session / build artifacts
 .Rhistory

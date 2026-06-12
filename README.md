@@ -113,8 +113,51 @@ signed edge can be decomposed back into its LR contributions and ranked
 This delivers both halves of the goal: detecting signed CCI **and** the LR pairs
 responsible for each signed interaction.
 
+## signedLRBase — a rule-based signed LR database
+
+The 12-pair hand-list above was replaced by a curated, reproducible **signedLRBase**.
+Existing resources (SIGNOR, OmniPath, CellPhoneDB v5) carry a *molecular signalling*
+sign (does the ligand activate or inhibit the receptor's signalling), which is **not**
+the *functional outcome* sign this project needs: `FASLG→FAS` is a molecular agonist
+(+) but the cellular outcome is death (−). So we assign the **functional sign**
+(+1 = activation/survival/proliferation, −1 = immunosuppression/exhaustion/death) by
+curated rules, then cross-check against OmniPath.
+
+```bash
+/home/koki/anaconda3/envs/signedcci/bin/Rscript experiments/signedLRBase/build_signedLRBase.R
+```
+
+- `experiments/signedLRBase/signed_lr_curated.csv` — 91 immune/TME LR pairs with a
+  functional sign + category (checkpoint_inhibitory / nk_inhibitory / death /
+  suppressive_cytokine = −; costimulation / activating_cytokine / chemokine /
+  growth_survival / nk_activating = +) and `context_dependent` flags.
+- `experiments/signedLRBase/build_signedLRBase.R` — pulls OmniPath's molecular sign
+  (`is_stimulation`/`is_inhibition`) and records agreement → `data/signedLRBase/signedLRBase.csv`.
+- `R/signed_lrbase.R::load_signed_lrbase()` — loader (compatible with `build_lr_matrices`).
+
+**Validation of the molecular≠functional gap:** of 91 pairs, 50 match OmniPath's
+molecular sign, **26 are expected overrides** (all inhibitory pathways that work *by*
+molecular agonism of a suppressive receptor — PD-L1/PD-1, CTLA4, TIGIT, HLA/NKG2A,
+TRAIL, TGFβ, IL10, …), 15 are DB-ambiguous, and **0 are genuine review conflicts**.
+i.e. using OmniPath's molecular sign directly would mis-sign ~29% of the negative pairs
+— which is exactly why signedLRBase exists.
+
+### Real data with signedLRBase
+
+```bash
+/home/koki/anaconda3/envs/signedcci/bin/Rscript experiments/real/run_real_signedLRBase.R
+```
+
+Re-runs GSE72056 with the 91-pair signedLRBase (88 usable; shared cell-typing helper
+`R/gse72056.R`). The `(-)×(-)=(+)` motif persists (`Tumor→Treg→CD8`, `Treg→CD8→Tumor`
+as net-positive double-negative paths); the richer death/NK-inhibitory coverage makes
+NK a strong negative hub. Outputs in `results/real_signedLRBase/`.
+
 ## Future extensions
 
+- Data-driven sign refinement from downstream targets (CytoSig / DoRothEA / PROGENy)
+  — note NicheNet's ligand-target potential is *unsigned* (activation and inhibition
+  contribute additively), so it can't supply the sign directly.
 - LR-specificity weighting / thresholding for sharper real-data signals.
 - End-to-end signed random walk at the LR level (Hypergraph / Tensor PageRank),
   per the symTensor/scTensor extension spec (not in this minimal implementation).

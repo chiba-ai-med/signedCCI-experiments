@@ -1,0 +1,92 @@
+ligand,receptor,sign,category,context_dependent,notes
+CD274,PDCD1,-1,checkpoint_inhibitory,FALSE,PD-L1/PD-1 T-cell exhaustion
+PDCD1LG2,PDCD1,-1,checkpoint_inhibitory,FALSE,PD-L2/PD-1
+CD80,CTLA4,-1,checkpoint_inhibitory,FALSE,B7-1/CTLA4 inhibitory (note CD80/CD28 is +)
+CD86,CTLA4,-1,checkpoint_inhibitory,FALSE,B7-2/CTLA4 inhibitory (note CD86/CD28 is +)
+PVR,TIGIT,-1,checkpoint_inhibitory,FALSE,CD155/TIGIT inhibitory (note PVR/CD226 is +)
+NECTIN2,TIGIT,-1,checkpoint_inhibitory,FALSE,CD112/TIGIT (note NECTIN2/CD226 is +)
+PVR,CD96,-1,checkpoint_inhibitory,TRUE,CD155/CD96 context-dependent
+LGALS9,HAVCR2,-1,checkpoint_inhibitory,FALSE,Galectin-9/TIM3 exhaustion
+CEACAM1,HAVCR2,-1,checkpoint_inhibitory,FALSE,CEACAM1/TIM3
+HMGB1,HAVCR2,-1,checkpoint_inhibitory,TRUE,HMGB1/TIM3 context
+FGL1,LAG3,-1,checkpoint_inhibitory,FALSE,FGL1/LAG3
+LGALS3,LAG3,-1,checkpoint_inhibitory,TRUE,Galectin-3/LAG3 context
+BTLA,TNFRSF14,-1,checkpoint_inhibitory,FALSE,BTLA/HVEM inhibitory
+CD160,TNFRSF14,-1,checkpoint_inhibitory,TRUE,CD160/HVEM context
+IGSF11,VSIR,-1,checkpoint_inhibitory,FALSE,VSIG3/VISTA inhibitory
+CD47,SIRPA,-1,checkpoint_inhibitory,FALSE,don't-eat-me; inhibits macrophage phagocytosis
+HLA-E,KLRC1,-1,nk_inhibitory,FALSE,HLA-E/NKG2A inhibitory
+HLA-C,KIR2DL1,-1,nk_inhibitory,FALSE,HLA-C/inhibitory KIR
+HLA-C,KIR2DL3,-1,nk_inhibitory,FALSE,HLA-C/inhibitory KIR
+HLA-B,KIR3DL1,-1,nk_inhibitory,FALSE,HLA-B/inhibitory KIR
+HLA-A,LILRB1,-1,nk_inhibitory,FALSE,HLA-A/LILRB1 inhibitory
+HLA-G,LILRB1,-1,nk_inhibitory,FALSE,HLA-G/LILRB1 inhibitory
+HLA-G,KIR2DL4,-1,nk_inhibitory,TRUE,HLA-G/KIR2DL4 context
+FASLG,FAS,-1,death,FALSE,death induction; molecular=stimulation but cellular outcome=death (override)
+TNFSF10,TNFRSF10A,-1,death,FALSE,TRAIL/DR4 apoptosis (override: molecular agonist)
+TNFSF10,TNFRSF10B,-1,death,FALSE,TRAIL/DR5 apoptosis (override: molecular agonist)
+TNF,TNFRSF1B,-1,death,TRUE,TNF/TNFR2 context (can be survival)
+TGFB1,TGFBR1,-1,suppressive_cytokine,TRUE,TGFb immunosuppressive (context: pro-fibrotic)
+TGFB1,TGFBR2,-1,suppressive_cytokine,TRUE,TGFb immunosuppressive
+TGFB2,TGFBR1,-1,suppressive_cytokine,TRUE,TGFb immunosuppressive
+TGFB3,TGFBR1,-1,suppressive_cytokine,TRUE,TGFb immunosuppressive
+IL10,IL10RA,-1,suppressive_cytokine,FALSE,IL10 immunosuppressive
+IL10,IL10RB,-1,suppressive_cytokine,FALSE,IL10 immunosuppressive
+IL4,IL4R,-1,suppressive_cytokine,TRUE,Th2/M2 polarization context
+IL13,IL13RA1,-1,suppressive_cytokine,TRUE,M2 polarization context
+CSF1,CSF1R,-1,suppressive_cytokine,TRUE,TAM/M2 polarization immunosuppressive
+VEGFA,FLT1,-1,suppressive_cytokine,TRUE,VEGF/VEGFR1 immunosuppressive on myeloid (note VEGFA/KDR is +)
+CXCL12,CXCR4,-1,suppressive_cytokine,TRUE,CXCL12/CXCR4 pro-tumor retention in TME (context)
+CD80,CD28,1,costimulation,FALSE,B7-1/CD28 T-cell costimulation
+CD86,CD28,1,costimulation,FALSE,B7-2/CD28 T-cell costimulation
+ICOSLG,ICOS,1,costimulation,FALSE,ICOSL/ICOS costimulation
+CD40LG,CD40,1,costimulation,FALSE,CD40L/CD40 DC licensing
+TNFSF9,TNFRSF9,1,costimulation,FALSE,4-1BBL/4-1BB costimulation
+TNFSF4,TNFRSF4,1,costimulation,FALSE,OX40L/OX40 costimulation
+CD70,CD27,1,costimulation,FALSE,CD70/CD27 costimulation
+TNFSF18,TNFRSF18,1,costimulation,FALSE,GITRL/GITR costimulation
+TNFSF14,TNFRSF14,1,costimulation,TRUE,LIGHT/HVEM activating (context)
+CD58,CD2,1,costimulation,FALSE,LFA-3/CD2 adhesion-costimulation
+NECTIN2,CD226,1,costimulation,FALSE,CD112/DNAM-1 activating
+PVR,CD226,1,costimulation,FALSE,CD155/DNAM-1 activating
+IL2,IL2RA,1,activating_cytokine,FALSE,IL2/IL2RA T-cell activation
+IL2,IL2RB,1,activating_cytokine,FALSE,IL2/IL2RB
+IL12A,IL12RB1,1,activating_cytokine,FALSE,IL12/IL12RB1 Th1 activation
+IL12B,IL12RB2,1,activating_cytokine,FALSE,IL12/IL12RB2
+IL15,IL2RB,1,activating_cytokine,FALSE,IL15/IL2RB NK/CD8 activation
+IL15,IL15RA,1,activating_cytokine,FALSE,IL15/IL15RA
+IL18,IL18R1,1,activating_cytokine,FALSE,IL18/IL18R1 activation
+IL21,IL21R,1,activating_cytokine,FALSE,IL21/IL21R
+IFNG,IFNGR1,1,activating_cytokine,TRUE,IFNg activates effectors (context: induces PD-L1)
+IFNG,IFNGR2,1,activating_cytokine,TRUE,IFNg activates effectors
+IFNA1,IFNAR1,1,activating_cytokine,FALSE,type-I IFN activation
+IFNB1,IFNAR1,1,activating_cytokine,FALSE,type-I IFN activation
+IL1B,IL1R1,1,activating_cytokine,TRUE,IL1b pro-inflammatory (context)
+TNF,TNFRSF1A,1,activating_cytokine,TRUE,TNF/TNFR1 NFkB activation (context vs death)
+CXCL9,CXCR3,1,chemokine,FALSE,CXCL9/CXCR3 effector T recruitment
+CXCL10,CXCR3,1,chemokine,FALSE,CXCL10/CXCR3 effector T recruitment
+CXCL11,CXCR3,1,chemokine,FALSE,CXCL11/CXCR3 effector T recruitment
+CCL5,CCR5,1,chemokine,FALSE,CCL5/CCR5 effector recruitment
+CCL3,CCR5,1,chemokine,FALSE,CCL3/CCR5 recruitment
+CCL4,CCR5,1,chemokine,FALSE,CCL4/CCR5 recruitment
+CXCL16,CXCR6,1,chemokine,FALSE,CXCL16/CXCR6 tissue-resident T
+XCL1,XCR1,1,chemokine,FALSE,XCL1/XCR1 cDC1 recruitment
+CCL19,CCR7,1,chemokine,FALSE,CCL19/CCR7 naive/DC homing
+CCL21,CCR7,1,chemokine,FALSE,CCL21/CCR7 homing
+CXCL13,CXCR5,1,chemokine,FALSE,CXCL13/CXCR5 tertiary lymphoid structures
+EGF,EGFR,1,growth_survival,FALSE,EGF/EGFR proliferation
+TGFA,EGFR,1,growth_survival,FALSE,TGFa/EGFR proliferation
+HBEGF,EGFR,1,growth_survival,FALSE,HB-EGF/EGFR
+AREG,EGFR,1,growth_survival,FALSE,Amphiregulin/EGFR
+IGF1,IGF1R,1,growth_survival,FALSE,IGF1/IGF1R survival/proliferation
+IGF2,IGF1R,1,growth_survival,FALSE,IGF2/IGF1R
+PDGFA,PDGFRA,1,growth_survival,FALSE,PDGF/PDGFRA stroma proliferation
+PDGFB,PDGFRB,1,growth_survival,FALSE,PDGF/PDGFRB
+FGF2,FGFR1,1,growth_survival,FALSE,FGF2/FGFR1 proliferation
+HGF,MET,1,growth_survival,FALSE,HGF/MET survival/invasion
+VEGFA,KDR,1,growth_survival,FALSE,VEGF/VEGFR2 angiogenesis (note VEGFA/FLT1 is -)
+TNFSF13B,TNFRSF13B,1,growth_survival,TRUE,BAFF/TACI B-cell survival
+MICA,KLRK1,1,nk_activating,FALSE,MICA/NKG2D NK activation
+MICB,KLRK1,1,nk_activating,FALSE,MICB/NKG2D NK activation
+ULBP1,KLRK1,1,nk_activating,FALSE,ULBP1/NKG2D NK activation
+NCR3LG1,NCR3,1,nk_activating,FALSE,B7-H6/NKp30 NK activation
