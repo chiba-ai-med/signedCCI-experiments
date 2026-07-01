@@ -1,0 +1,5 @@
+"group","n_cells","n_types","supp_index","fracpos_hop2"
+"Responder (all)",5564,7,0.578,0.5058
+"Non-responder (all)",10727,7,0.5585,0.5025
+"Responder (Pre)",2725,7,0.5586,0.4979
+"Non-responder (Pre)",3203,7,0.5859,0.5108
